@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#123b32">
+<title>আমাদের পারিবারিক ফাইন্যান্স</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f2f5f3;color:#19352d;font-family:Arial,sans-serif}
+header{background:#123b32;color:white;padding:22px 16px;text-align:center}
+header h2{margin:0 0 7px}
+main{max-width:900px;margin:20px auto;padding:12px}
+.card{background:white;padding:20px;border-radius:14px;margin-bottom:16px;box-shadow:0 2px 12px #0000000d}
+input,button{width:100%;padding:14px;border-radius:9px;font-size:16px}
+input{border:1px solid #bbb;margin:12px 0}
+button{background:#176b50;color:white;border:0;cursor:pointer}
+button:disabled{opacity:.5}
+#message{margin-top:12px;color:#a33}
+#dashboard{display:none}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:550px;font-size:14px}
+td,th{border:1px solid #ddd;padding:9px;text-align:left;white-space:pre-wrap}
+th{background:#e5eee9}
+#bridge{position:absolute;width:1px;height:1px;left:-10px;top:-10px;border:0}
+.small{font-size:13px;color:#66776f}
+</style>
+</head>
+<body>
+<header>
+<h2>আমাদের পারিবারিক ফাইন্যান্স</h2>
+<div>পরিবারের আয়, ব্যয় ও সঞ্চয়ের হিসাব</div>
+</header>
+
+<iframe id="bridge" title="Secure connection"></iframe>
+
+<main>
+<section class="card" id="login">
+<h3>নিরাপদ প্রবেশ</h3>
+<p>আপনার ৬ সংখ্যার PIN লিখুন</p>
+<input id="pin" type="password" inputmode="numeric"
+maxlength="6" placeholder="৬ সংখ্যার PIN">
+<button id="loginBtn" disabled onclick="login()">প্রবেশ করুন</button>
+<div id="message"></div>
+<p class="small">Owner PIN: সম্পাদনার অনুমতি নির্ধারিত হবে।<br>
+Family PIN: শুধু দেখার অনুমতি।</p>
+</section>
+
+<section id="dashboard">
+<div class="card">
+<h3 id="welcome">ড্যাশবোর্ড</h3>
+<p id="updated" class="small"></p>
+<button onclick="loadData()">হিসাব আপডেট করুন</button>
+<button onclick="logout()" style="background:#777;margin-top:9px">লগআউট</button>
+</div>
+<div class="card">
+<h3>মাসিক আর্থিক হিসাব</h3>
+<div class="table-wrap" id="tableArea"></div>
+</div>
+</section>
+</main>
+
+<script>
+const WEB_APP_URL =
+"https://script.google.com/macros/s/AKfycbyPCmc42IN-3K5QAuQXfIPRFuW_RlP9nF2ygqyjj3yGlWFv8btoroCuB4E5TSuHz3aA/exec";
+
+const bridge = document.getElementById("bridge");
+const loginBtn = document.getElementById("loginBtn");
+
+let bridgeReady = false;
+let sessionToken = "";
+let userRole = "";
+
+bridge.src = WEB_APP_URL;
+
+bridge.onload = function(){
+  bridgeReady = true;
+  loginBtn.disabled = false;
+};
+
+function sendMessage(data){
+  if(!bridgeReady){
+    showMessage("সংযোগ প্রস্তুত হয়নি। একটু অপেক্ষা করুন।");
+    return;
+  }
+  bridge.contentWindow.postMessage(data, "*");
+}
+
+function showMessage(message){
+  document.getElementById("message").textContent = message;
+}
+
+function login(){
+  const pin = document.getElementById("pin").value.trim();
+
+  if(!/^\d{6}$/.test(pin)){
+    showMessage("সঠিক ৬ সংখ্যার PIN লিখুন।");
+    return;
+  }
+
+  loginBtn.disabled = true;
+  showMessage("PIN যাচাই হচ্ছে...");
+  sendMessage({type:"LOGIN",pin:pin});
+}
+
+window.addEventListener("message",function(event){
+  if(event.source !== bridge.contentWindow) return;
+
+  const msg = event.data;
+  if(!msg || typeof msg !== "object") return;
+
+  if(msg.type === "LOGIN_RESULT"){
+    loginBtn.disabled = false;
+
+    const result = msg.result || msg;
+
+    if(!result.success){
+      showMessage(result.message || "লগইন সফল হয়নি।");
+      return;
+    }
+
+    sessionToken = result.token;
+    userRole = result.role;
+
+    document.getElementById("login").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+
+    document.getElementById("welcome").textContent =
+      userRole === "owner" ? "স্বাগতম, Owner" : "স্বাগতম, Family";
+
+    showMessage("");
+    loadData();
+  }
+
+  if(msg.type === "DATA_RESULT"){
+    const result = msg.result || msg;
+
+    if(!result.success){
+      alert(result.message || "তথ্য পাওয়া যায়নি।");
+      logout();
+      return;
+    }
+
+    renderTable(result.data || []);
+    document.getElementById("updated").textContent =
+      "সর্বশেষ আপডেট: " + (result.updatedAt || "");
+  }
+});
+
+function loadData(){
+  if(!sessionToken) return;
+  sendMessage({
+    type:"GET_DATA",
+    token:sessionToken
+  });
+}
+
+function renderTable(data){
+  const area = document.getElementById("tableArea");
+  area.replaceChildren();
+
+  const table = document.createElement("table");
+
+  data.forEach((row,index)=>{
+    const tr = document.createElement("tr");
+
+    row.forEach(value=>{
+      const cell = document.createElement(index===0?"th":"td");
+      cell.textContent = value == null ? "" : String(value);
+      tr.appendChild(cell);
+    });
+
+    table.appendChild(tr);
+  });
+
+  area.appendChild(table);
+}
+
+function logout(){
+  sessionToken = "";
+  userRole = "";
+  document.getElementById("pin").value = "";
+  document.getElementById("dashboard").style.display = "none";
+  document.getElementById("login").style.display = "block";
+  showMessage("আপনি লগআউট করেছেন।");
+}
+</script>
+</body>
+</html>
