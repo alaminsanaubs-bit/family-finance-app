@@ -1,0 +1,14 @@
+
+{
+  "name": "আমাদের পারিবারিক ফাইন্যান্স",
+  "short_name": "পারিবারিক হিসাব",
+  "description": "আমাদের পরিবারের আয়, ব্যয়, সঞ্চয় ও আর্থিক পরিকল্পনা",
+  "lang": "bn",
+  "dir": "ltr",
+  "start_url": "/family-finance-app/",
+  "scope": "/family-finance-app/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f2f5f3",
+  "theme_color": "#123b32"
+}
