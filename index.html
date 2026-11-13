@@ -5,7 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#123b32">
+
   <title>আমাদের পারিবারিক ফাইন্যান্স</title>
+
+  <link rel="manifest" href="/family-finance-app/manifest.json">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="পারিবারিক হিসাব">
 
   <style>
     * {
@@ -34,9 +41,22 @@
 
   <iframe
     src="https://script.google.com/macros/s/AKfycbyPCmc42IN-3K5QAuQXfIPRFuW_RlP9nF2ygqyjj3yGlWFv8btoroCuB4E5TSuHz3aA/exec"
-    title="আমাদের পারিবারিক ফাইন্যান্স অ্যাপ"
-    allow="clipboard-read; clipboard-write">
+    title="আমাদের পারিবারিক ফাইন্যান্স অ্যাপ">
   </iframe>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register(
+          "/family-finance-app/service-worker.js"
+        ).then(function () {
+          console.log("Service Worker চালু হয়েছে");
+        }).catch(function (error) {
+          console.error("Service Worker সমস্যা:", error);
+        });
+      });
+    }
+  </script>
 
 </body>
 </html>
