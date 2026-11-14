@@ -1,3 +1,4 @@
+
 {
   "id": "/family-finance-app/",
   "name": "আমাদের পারিবারিক ফাইন্যান্স",
@@ -22,7 +23,7 @@
       "src": "/family-finance-app/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
     }
   ]
 }
