@@ -1,66 +1,27 @@
-
-const CACHE_NAME = "family-finance-v1";
-
+const CACHE_NAME = "family-finance-pwa-v3";
+const APP_ROOT = "/family-finance-app/";
 const APP_FILES = [
-  "/family-finance-app/",
-  "/family-finance-app/index.html",
-  "/family-finance-app/manifest.json"
+ APP_ROOT, APP_ROOT+"index.html", APP_ROOT+"manifest.json",
+ APP_ROOT+"icons/icon-192.png", APP_ROOT+"icons/icon-512.png"
 ];
-
-// অ্যাপের প্রয়োজনীয় ফাইল ক্যাশ করা
-self.addEventListener("install", event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(APP_FILES))
-      .then(() => self.skipWaiting())
-  );
+self.addEventListener("install",event=>{
+ event.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(APP_FILES)).then(()=>self.skipWaiting()));
 });
-
-// পুরোনো ক্যাশ পরিষ্কার করা
-self.addEventListener("activate", event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames
-          .filter(name => name !== CACHE_NAME)
-          .map(name => caches.delete(name))
-      );
-    }).then(() => self.clients.claim())
-  );
+self.addEventListener("activate",event=>{
+ event.waitUntil(caches.keys().then(names=>Promise.all(
+  names.filter(n=>n.startsWith("family-finance-")&&n!==CACHE_NAME).map(n=>caches.delete(n))
+ )).then(()=>self.clients.claim()));
 });
-
-// পেজ খোলার সময় আগে ইন্টারনেট থেকে নতুন পেজ আনা
-self.addEventListener("fetch", event => {
-  const request = event.request;
-  const url = new URL(request.url);
-
-  // অন্য ওয়েবসাইটের অনুরোধে হস্তক্ষেপ করবে না
-  if (url.origin !== self.location.origin) {
-    return;
-  }
-
-  // HTML পেজ: Network first
-  if (request.mode === "navigate") {
-    event.respondWith(
-      fetch(request)
-        .then(response => {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then(cache => {
-            cache.put("/family-finance-app/", copy);
-          });
-          return response;
-        })
-        .catch(() => {
-          return caches.match("/family-finance-app/");
-        })
-    );
-    return;
-  }
-
-  // অন্য একই-সাইটের ফাইল: Cache first
-  event.respondWith(
-    caches.match(request).then(cached => {
-      return cached || fetch(request);
-    })
-  );
+self.addEventListener("fetch",event=>{
+ const req=event.request, url=new URL(req.url);
+ if(url.origin!==self.location.origin)return;
+ if(req.mode==="navigate"){
+  event.respondWith(fetch(req).then(res=>{
+   if(res&&res.ok){const copy=res.clone();caches.open(CACHE_NAME).then(c=>c.put(APP_ROOT,copy));}
+   return res;
+  }).catch(()=>caches.match(APP_ROOT)));
+  return;
+ }
+ if(url.pathname.startsWith(APP_ROOT))
+  event.respondWith(caches.match(req).then(cached=>cached||fetch(req)));
 });
