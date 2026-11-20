@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#123c32">
+  <meta name="theme-color" content="#075e48">
   <title>পারিবারিক ফাইন্যান্স</title>
   <link rel="manifest" href="manifest.json">
 
@@ -13,40 +13,54 @@
 
     body {
       margin: 0;
+      padding: 12px;
+      background: #f1f5f9;
+      color: #1e293b;
       font-family: Arial, "Noto Sans Bengali", sans-serif;
-      background: #f3f6f5;
-      color: #172b25;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
     }
 
     header {
-      background: #123c32;
+      background: linear-gradient(135deg, #075e48, #0d9488);
       color: white;
-      padding: 15px;
-      text-align: center;
+      padding: 22px 18px;
+      border-radius: 16px;
+      margin-bottom: 16px;
+      text-align: left;
     }
 
-    header h2 {
-      margin: 0 0 7px;
-      font-size: 20px;
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 23px;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 13px;
     }
 
     #status {
       font-size: 13px;
-      opacity: .9;
+      line-height: 1.8;
+      opacity: .95;
     }
 
-    main {
-      max-width: 950px;
-      margin: auto;
-      padding: 14px;
-    }
-
-    .panel {
+    .section, .panel, .status {
       background: white;
-      border-radius: 12px;
       padding: 16px;
-      margin-bottom: 14px;
-      box-shadow: 0 2px 9px #0000000c;
+      border-radius: 14px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px #00000008;
+    }
+
+    .section h2 {
+      font-size: 17px;
+      color: #075e48;
+      margin: 0 0 14px;
     }
 
     .hidden {
@@ -54,31 +68,35 @@
     }
 
     input, button {
-      width: 100%;
-      padding: 13px;
+      font-size: 15px;
+      padding: 12px;
       border-radius: 8px;
-      font-size: 16px;
-      margin-top: 9px;
     }
 
     input {
-      border: 1px solid #bbb;
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      margin: 10px 0;
     }
 
     button {
       border: 0;
-      background: #176b50;
+      background: #075e48;
       color: white;
-      font-weight: bold;
       cursor: pointer;
-    }
-
-    button.secondary {
-      background: #53645e;
+      font-weight: bold;
     }
 
     button:disabled {
       opacity: .5;
+    }
+
+    .login-btn {
+      width: 100%;
+    }
+
+    .secondary {
+      background: #64748b;
     }
 
     .notice {
@@ -94,146 +112,252 @@
       color: #176b50;
     }
 
-    .data-card {
-      border: 1px solid #e0e7e3;
-      border-radius: 9px;
-      padding: 12px;
-      margin: 9px 0;
-      background: #fff;
-      overflow-wrap: anywhere;
-    }
-
-    .data-title {
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    .data-value {
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-    }
-
-    details {
-      border: 1px solid #e0e7e3;
-      border-radius: 8px;
-      padding: 10px;
-      margin: 8px 0;
-      background: #fbfdfc;
-    }
-
-    summary {
-      cursor: pointer;
-      font-weight: bold;
-    }
-
     .muted {
-      color: #68756f;
+      color: #64748b;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .message {
+      font-size: 14px;
+      margin-top: 12px;
+      color: #b42318;
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+      width: 100%;
+      min-width: 480px;
+      border-collapse: collapse;
       font-size: 13px;
     }
 
-    iframe {
-      width: 100%;
-      height: 82vh;
-      min-height: 600px;
-      border: 0;
-      background: white;
+    th, td {
+      padding: 11px 9px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    th {
+      background: #eaf5f1;
+      color: #075e48;
+    }
+
+    tr.total-row td {
+      font-weight: bold;
+      background: #eaf5f1;
+      color: #075e48;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .summary-card {
+      background: #f0fdfa;
+      border: 1px solid #ccfbf1;
+      padding: 13px;
       border-radius: 10px;
+      min-width: 0;
+    }
+
+    .summary-card small {
+      display: block;
+      color: #64748b;
+      margin-bottom: 7px;
+    }
+
+    .summary-card strong {
+      color: #075e48;
+      font-size: 17px;
+      overflow-wrap: anywhere;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 20px;
+      color: #64748b;
+    }
+
+    .month-select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #0d9488;
+      border-radius: 9px;
+      background: white;
+      color: #075e48;
+      font-size: 16px;
+      margin: 8px 0 14px;
+    }
+
+    .edit-note {
+      color: #64748b;
+      font-size: 12px;
+      margin: 8px 0;
+      line-height: 1.6;
+    }
+
+    .footer {
+      text-align: center;
+      color: #64748b;
+      font-size: 12px;
+      padding: 12px;
     }
 
     #offlineData {
-      padding-bottom: 30px;
+      padding-bottom: 20px;
+    }
+
+    #dataDisplay {
+      margin-top: 15px;
+    }
+
+    .offline-role {
+      display: inline-block;
+      background: #eaf5f1;
+      color: #075e48;
+      padding: 6px 10px;
+      border-radius: 7px;
+      font-size: 12px;
+      margin: 8px 0;
+    }
+
+    @media(max-width: 600px) {
+      body {
+        padding: 9px;
+      }
+
+      header {
+        padding: 21px 15px;
+      }
+
+      header h1 {
+        font-size: 20px;
+      }
+
+      .section, .panel {
+        padding: 12px;
+      }
+
+      .summary-card strong {
+        font-size: 15px;
+      }
     }
   </style>
 </head>
 
 <body>
 
+<div class="container">
+
   <header>
-    <h2>পারিবারিক ফাইন্যান্স ড্যাশবোর্ড</h2>
+    <h1>আমাদের পারিবারিক ফাইন্যান্স</h1>
+    <p>পরিবারের আয়, ব্যয়, সঞ্চয় ও আর্থিক পরিকল্পনা</p>
     <div id="status">সংযোগ পরীক্ষা করা হচ্ছে...</div>
   </header>
 
-  <main>
+  <!-- অনলাইন অ্যাপ -->
+  <section id="onlinePanel" class="panel">
 
-    <section id="onlinePanel" class="panel">
-      <div class="notice">
-        <strong>অনলাইন অ্যাপ</strong>
-        <p>
-          ইন্টারনেট থাকলে আগের PIN দিয়ে লগইন করে হিসাব দেখুন
-          ও প্রয়োজনীয় কাজ করুন।
-        </p>
-      </div>
-
-      <iframe
-        id="appFrame"
-        title="পারিবারিক ফাইন্যান্স অ্যাপ"
-        src="https://script.google.com/macros/s/AKfycbyPCmc42IN-3K5QAuQXfIPRFuW_RlP9nF2ygqyjj3yGlWFv8btoroCuB4E5TSuHz3aA/exec"
-        allow="clipboard-read; clipboard-write">
-      </iframe>
-    </section>
-
-    <section id="offlinePanel" class="panel hidden">
-
-      <h3>অফলাইন হিসাব</h3>
-
-      <p class="notice warning">
-        আপনি এখন অফলাইনে আছেন। এখানে শুধু আগে এই ডিভাইসে
-        Sync হওয়া হিসাব দেখা যাবে।
-        অফলাইনে কোনো হিসাব পরিবর্তন বা সংরক্ষণ করা যাবে না।
+    <div class="notice">
+      <strong>অনলাইন অ্যাপ</strong>
+      <p>
+        ইন্টারনেট থাকলে আগের PIN দিয়ে লগইন করে হিসাব দেখুন
+        ও প্রয়োজনীয় কাজ করুন।
       </p>
+    </div>
 
-      <div id="unlockBox">
+    <iframe
+      id="appFrame"
+      title="পারিবারিক ফাইন্যান্স অ্যাপ"
+      src="https://script.google.com/macros/s/AKfycbyPCmc42IN-3K5QAuQXfIPRFuW_RlP9nF2ygqyjj3yGlWFv8btoroCuB4E5TSuHz3aA/exec"
+      allow="clipboard-read; clipboard-write"
+      style="width:100%;height:82vh;min-height:600px;border:0;background:white;border-radius:10px;">
+    </iframe>
 
-        <label for="offlinePin">
-          অফলাইন হিসাব খোলার PIN দিন
-        </label>
+  </section>
 
-        <input
-          id="offlinePin"
-          type="password"
-          inputmode="numeric"
-          autocomplete="off"
-          placeholder="আপনার PIN লিখুন">
+  <!-- অফলাইন অ্যাপ -->
+  <section id="offlinePanel" class="panel hidden">
 
-        <button id="unlockButton" type="button">
-          হিসাব খুলুন
-        </button>
+    <h2 style="color:#075e48;">অফলাইন হিসাব</h2>
 
-        <p id="unlockMessage" class="notice warning"></p>
-      </div>
+    <p class="notice warning">
+      আপনি এখন অফলাইনে আছেন। এখানে শুধু আগে এই ডিভাইসে
+      Sync হওয়া হিসাব দেখা যাবে। অফলাইনে কোনো হিসাব
+      পরিবর্তন বা সংরক্ষণ করা যাবে না।
+    </p>
 
-      <div id="offlineData" class="hidden">
+    <div id="unlockBox">
 
-        <p id="savedInfo" class="muted"></p>
+      <label for="offlinePin">
+        <strong>অফলাইন হিসাব খোলার PIN দিন</strong>
+      </label>
 
-        <button
-          class="secondary"
-          id="lockButton"
-          type="button">
-          হিসাব বন্ধ করুন
-        </button>
+      <input
+        id="offlinePin"
+        type="password"
+        inputmode="numeric"
+        autocomplete="off"
+        placeholder="আপনার PIN লিখুন">
 
-        <div id="dataDisplay"></div>
-      </div>
+      <button id="unlockButton" class="login-btn" type="button">
+        হিসাব খুলুন
+      </button>
 
-    </section>
+      <p id="unlockMessage" class="message"></p>
 
-    <section class="panel notice">
+    </div>
 
-      <strong>Sync অবস্থা</strong>
+    <div id="offlineData" class="hidden">
 
-      <p id="syncInfo">
-        এই ডিভাইসে এখনো নতুন Sync পাওয়া যায়নি।
-      </p>
+      <p id="savedInfo" class="muted"></p>
 
-      <p class="muted">
-        নিরাপত্তার জন্য PIN সরাসরি সংরক্ষণ করা হয় না।
-        অফলাইন তথ্য PIN-ভিত্তিক এনক্রিপশনে এই ডিভাইসে রাখা হয়।
-      </p>
+      <div id="offlineRole" class="offline-role"></div>
 
-    </section>
+      <button
+        class="secondary"
+        id="lockButton"
+        type="button">
+        হিসাব বন্ধ করুন
+      </button>
 
-  </main>
+      <div id="dataDisplay"></div>
+
+    </div>
+
+  </section>
+
+  <!-- Sync অবস্থা -->
+  <section class="panel notice">
+
+    <strong>Sync অবস্থা</strong>
+
+    <p id="syncInfo">
+      এই ডিভাইসে এখনো নতুন Sync পাওয়া যায়নি।
+    </p>
+
+    <p class="muted">
+      নিরাপত্তার জন্য PIN সরাসরি সংরক্ষণ করা হয় না।
+      অফলাইন তথ্য PIN-ভিত্তিক এনক্রিপশনে এই ডিভাইসে রাখা হয়।
+    </p>
+
+  </section>
+
+  <div class="footer">
+    তথ্যের মূল উৎস: Google Sheets
+  </div>
+
+</div>
 
 <script>
 (() => {
@@ -242,6 +366,12 @@
   const DB_NAME = "familyFinanceOfflineV2";
   const STORE_NAME = "snapshots";
   const DB_VERSION = 1;
+
+  const MONTHS = [
+    "জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল",
+    "মে", "জুন", "জুলাই", "আগস্ট",
+    "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"
+  ];
 
   const APP_FRAME = document.getElementById("appFrame");
   const STATUS = document.getElementById("status");
@@ -255,8 +385,12 @@
   const SYNC_INFO = document.getElementById("syncInfo");
 
   let db = null;
+  let offlineData = null;
 
-  // IndexedDB চালু করা
+  // ==========================================
+  // IndexedDB
+  // ==========================================
+
   function openDatabase() {
     return new Promise((resolve, reject) => {
 
@@ -267,10 +401,9 @@
         const database = request.result;
 
         if (!database.objectStoreNames.contains(STORE_NAME)) {
-          database.createObjectStore(
-            STORE_NAME,
-            { keyPath: "id" }
-          );
+          database.createObjectStore(STORE_NAME, {
+            keyPath: "id"
+          });
         }
       };
 
@@ -284,7 +417,6 @@
     });
   }
 
-  // এনক্রিপ্ট করা তথ্য সংরক্ষণ
   function saveSnapshot(record) {
     return new Promise((resolve, reject) => {
 
@@ -299,7 +431,6 @@
     });
   }
 
-  // সংরক্ষিত তথ্য পড়া
   function readSnapshot() {
     return new Promise((resolve, reject) => {
 
@@ -313,7 +444,10 @@
     });
   }
 
-  // Base64 তৈরি
+  // ==========================================
+  // Encryption
+  // ==========================================
+
   function bytesToBase64(bytes) {
 
     let binary = "";
@@ -325,18 +459,13 @@
     return btoa(binary);
   }
 
-  // Base64 থেকে Bytes
   function base64ToBytes(value) {
 
     const binary = atob(value);
 
-    return Uint8Array.from(
-      binary,
-      char => char.charCodeAt(0)
-    );
+    return Uint8Array.from(binary, char => char.charCodeAt(0));
   }
 
-  // PIN থেকে Encryption Key তৈরি
   async function deriveKey(pin, salt) {
 
     const encoder = new TextEncoder();
@@ -366,7 +495,6 @@
     );
   }
 
-  // Snapshot এনক্রিপ্ট করা
   async function encryptSnapshot(payload) {
 
     const pin = String(payload.pin || "");
@@ -375,13 +503,8 @@
       throw new Error("Sync বার্তায় PIN পাওয়া যায়নি।");
     }
 
-    const salt = crypto.getRandomValues(
-      new Uint8Array(16)
-    );
-
-    const iv = crypto.getRandomValues(
-      new Uint8Array(12)
-    );
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const iv = crypto.getRandomValues(new Uint8Array(12));
 
     const key = await deriveKey(pin, salt);
 
@@ -411,14 +534,11 @@
       id: "latest",
       salt: bytesToBase64(salt),
       iv: bytesToBase64(iv),
-      ciphertext: bytesToBase64(
-        new Uint8Array(encrypted)
-      ),
+      ciphertext: bytesToBase64(new Uint8Array(encrypted)),
       savedAt: cleanPayload.savedAt
     };
   }
 
-  // Snapshot Decrypt করা
   async function decryptSnapshot(record, pin) {
 
     const salt = base64ToBytes(record.salt);
@@ -441,7 +561,10 @@
     );
   }
 
-  // Google Apps Script Origin যাচাই
+  // ==========================================
+  // Apps Script Origin যাচাই
+  // ==========================================
+
   function isAllowedAppsScriptOrigin(origin) {
 
     try {
@@ -467,18 +590,17 @@
     }
   }
 
-  // Apps Script থেকে Offline Sync বার্তা গ্রহণ
+  // ==========================================
+  // Online থেকে Offline Sync গ্রহণ
+  // ==========================================
+
   window.addEventListener("message", async event => {
 
-    if (!isAllowedAppsScriptOrigin(event.origin)) {
-      return;
-    }
+    if (!isAllowedAppsScriptOrigin(event.origin)) return;
 
     const message = event.data;
 
-    if (!message || message.type !== "offline-sync") {
-      return;
-    }
+    if (!message || message.type !== "offline-sync") return;
 
     try {
 
@@ -491,9 +613,7 @@
         throw new Error("Sync তথ্য অসম্পূর্ণ।");
       }
 
-      const encryptedRecord = await encryptSnapshot(
-        message.payload
-      );
+      const encryptedRecord = await encryptSnapshot(message.payload);
 
       await saveSnapshot(encryptedRecord);
 
@@ -501,8 +621,7 @@
         "সর্বশেষ হিসাব এই ডিভাইসে এনক্রিপ্ট করে সংরক্ষণ হয়েছে: " +
         new Date(encryptedRecord.savedAt).toLocaleString("bn-BD");
 
-      STATUS.textContent =
-        "অনলাইন • সর্বশেষ হিসাব Sync হয়েছে";
+      STATUS.textContent = "অনলাইন • সর্বশেষ হিসাব Sync হয়েছে";
 
     } catch (error) {
 
@@ -515,167 +634,400 @@
 
   });
 
-  // Text Element তৈরি
-  function addTextElement(parent, text, className) {
+  // ==========================================
+  // নিরাপদ HTML ও টেবিল তৈরি
+  // ==========================================
 
-    const element = document.createElement("div");
+  function escapeHtml(value) {
 
-    if (className) {
-      element.className = className;
-    }
+    return String(value ?? "").replace(/[&<>"']/g, char => {
 
-    element.textContent = text;
+      return {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[char];
 
-    parent.appendChild(element);
+    });
   }
 
-  // সংরক্ষিত হিসাব প্রদর্শন
-  function renderValue(parent, key, value, depth = 0) {
+  function hasContent(row) {
 
-    if (depth > 8) {
-      return;
+    return row && row.some(cell =>
+      String(cell ?? "").trim() !== ""
+    );
+  }
+
+  function makeTable(data, startRow, endRow, startCol, endCol) {
+
+    if (!Array.isArray(data)) {
+      return '<p class="empty">তথ্য পাওয়া যায়নি।</p>';
     }
 
-    if (value === null || value === undefined) {
+    const headerRow = data[startRow];
 
-      addTextElement(
-        parent,
-        key + ": —",
-        "data-card"
-      );
-
-      return;
+    if (!headerRow || !hasContent(headerRow)) {
+      return '<p class="empty">তথ্য পাওয়া যায়নি।</p>';
     }
 
-    if (typeof value === "object") {
+    const bodyRows = data
+      .slice(startRow + 1, endRow)
+      .filter(hasContent);
 
-      const details = document.createElement("details");
+    let html = '<div class="table-wrap"><table><thead><tr>';
 
-      const summary = document.createElement("summary");
+    for (let col = startCol; col < endCol; col++) {
 
-      summary.textContent = key;
+      html += "<th>" +
+        escapeHtml(headerRow[col]) +
+        "</th>";
 
-      details.appendChild(summary);
+    }
 
-      if (Array.isArray(value)) {
+    html += "</tr></thead><tbody>";
 
-        value.forEach((item, index) => {
+    bodyRows.forEach(row => {
 
-          renderValue(
-            details,
-            "ক্রম " + (index + 1),
-            item,
-            depth + 1
-          );
+      const firstValue = String(row[startCol] ?? "").trim();
 
-        });
+      const isTotal = firstValue.includes("মোট");
 
-      } else {
+      html += isTotal
+        ? '<tr class="total-row">'
+        : "<tr>";
 
-        Object.entries(value).forEach(
-          ([childKey, childValue]) => {
+      for (let col = startCol; col < endCol; col++) {
 
-            renderValue(
-              details,
-              childKey,
-              childValue,
-              depth + 1
-            );
+        const value = row[col] ?? "";
 
-          }
-        );
+        html += "<td>" +
+          (
+            String(value).trim() === ""
+              ? "—"
+              : escapeHtml(value)
+          ) +
+          "</td>";
 
       }
 
-      parent.appendChild(details);
+      html += "</tr>";
 
-      return;
-    }
+    });
 
-    const card = document.createElement("div");
-
-    card.className = "data-card";
-
-    addTextElement(card, key, "data-title");
-
-    addTextElement(card, String(value), "data-value");
-
-    parent.appendChild(card);
+    return html + "</tbody></table></div>";
   }
 
-  // Offline Snapshot প্রদর্শন
-  function showOfflineSnapshot(data, record) {
+  function makeSection(title, content) {
+
+    return '<div class="section"><h2>' +
+      escapeHtml(title) +
+      "</h2>" +
+      content +
+      "</div>";
+  }
+
+  // ==========================================
+  // অফলাইন ড্যাশবোর্ড তৈরি
+  // ==========================================
+
+  function renderOfflineDashboard(data) {
 
     DATA_DISPLAY.replaceChildren();
 
-    addTextElement(
-      DATA_DISPLAY,
-      "সংরক্ষিত ড্যাশবোর্ড",
-      "data-title"
+    if (!data || !data.dashboard || !data.dashboard.success) {
+
+      DATA_DISPLAY.innerHTML =
+        '<div class="section empty">' +
+        "সংরক্ষিত ড্যাশবোর্ডের তথ্য পাওয়া যায়নি।" +
+        "</div>";
+
+      return;
+    }
+
+    const dashboardResult = data.dashboard;
+    const sheetData = dashboardResult.data;
+
+    if (!Array.isArray(sheetData) || sheetData.length < 44) {
+
+      DATA_DISPLAY.innerHTML =
+        '<div class="section empty">' +
+        "ড্যাশবোর্ডের তথ্য অসম্পূর্ণ। আবার অনলাইনে Sync করুন।" +
+        "</div>";
+
+      return;
+    }
+
+    // ড্যাশবোর্ডের সর্বশেষ লোডের তথ্য
+
+    const statusBox = document.createElement("div");
+
+    statusBox.className = "status";
+
+    const roleName =
+      data.role === "owner" ? "Owner" : "Family";
+
+    statusBox.textContent =
+      "✓ এই ডিভাইসে সংরক্ষিত হিসাব" +
+      " | ব্যবহারকারী: " + roleName;
+
+    DATA_DISPLAY.appendChild(statusBox);
+
+    // প্রথম টেবিল
+
+    DATA_DISPLAY.insertAdjacentHTML(
+      "beforeend",
+      makeSection(
+        "মাসভিত্তিক আয় ও প্রকৃত মোট বণ্টন",
+        makeTable(sheetData, 8, 22, 0, 4)
+      )
     );
 
-    renderValue(
-      DATA_DISPLAY,
-      "ড্যাশবোর্ডের তথ্য",
-      data.dashboard
+    // দ্বিতীয় টেবিল
+
+    DATA_DISPLAY.insertAdjacentHTML(
+      "beforeend",
+      makeSection(
+        "বাজেট ও প্রকৃত ব্যয়ের তুলনা",
+        makeTable(sheetData, 8, 15, 5, 10)
+      )
     );
 
-    const months = data.months || {};
+    // মাস নির্বাচন ও বিস্তারিত অংশ
 
-    addTextElement(
-      DATA_DISPLAY,
-      "মাসভিত্তিক হিসাব",
-      "data-title"
+    const monthSection = document.createElement("div");
+
+    monthSection.className = "section";
+
+    const title = document.createElement("h2");
+
+    title.textContent = "নির্বাচিত মাসের বিস্তারিত হিসাব";
+
+    monthSection.appendChild(title);
+
+    const label = document.createElement("label");
+
+    label.htmlFor = "offlineMonthSelector";
+    label.innerHTML = "<strong>আপনার পছন্দের মাস নির্বাচন করুন</strong>";
+
+    monthSection.appendChild(label);
+
+    const selector = document.createElement("select");
+
+    selector.id = "offlineMonthSelector";
+    selector.className = "month-select";
+
+    MONTHS.forEach(month => {
+
+      const option = document.createElement("option");
+
+      option.value = month;
+      option.textContent = month;
+
+      selector.appendChild(option);
+
+    });
+
+    monthSection.appendChild(selector);
+
+    const summary = document.createElement("div");
+
+    summary.id = "offlineMonthSummary";
+    summary.className = "summary";
+
+    monthSection.appendChild(summary);
+
+    const details = document.createElement("div");
+
+    details.id = "offlineMonthDetails";
+
+    monthSection.appendChild(details);
+
+    DATA_DISPLAY.appendChild(monthSection);
+
+    // ডিফল্ট মাস নির্ধারণ
+
+    const defaultMonth =
+      data.selectedMonth ||
+      (sheetData[25] && sheetData[25][1]) ||
+      "জানুয়ারি";
+
+    selector.value = MONTHS.includes(String(defaultMonth).trim())
+      ? String(defaultMonth).trim()
+      : "জানুয়ারি";
+
+    // মাস পরিবর্তন করলে শুধু সংরক্ষিত তথ্য দেখাবে
+
+    selector.addEventListener("change", () => {
+
+      renderOfflineMonth(
+        data,
+        selector.value,
+        summary,
+        details
+      );
+
+    });
+
+    renderOfflineMonth(
+      data,
+      selector.value,
+      summary,
+      details
     );
 
-    Object.entries(months).forEach(
-      ([month, monthData]) => {
-
-        const details = document.createElement("details");
-
-        const summary = document.createElement("summary");
-
-        summary.textContent = month;
-
-        details.appendChild(summary);
-
-        renderValue(
-          details,
-          "এই মাসের হিসাব",
-          monthData
-        );
-
-        DATA_DISPLAY.appendChild(details);
-
-      }
-    );
-
-    document.getElementById("savedInfo").textContent =
-      "সর্বশেষ সংরক্ষণের সময়: " +
-      new Date(record.savedAt).toLocaleString("bn-BD");
-
-    UNLOCK_BOX.classList.add("hidden");
-
-    OFFLINE_DATA.classList.remove("hidden");
   }
 
-  // Offline হিসাব খোলা
+  // ==========================================
+  // মাসভিত্তিক অফলাইন হিসাব
+  // ==========================================
+
+  function renderOfflineMonth(data, month, summary, details) {
+
+    summary.replaceChildren();
+    details.replaceChildren();
+
+    const monthsData = data.months || {};
+
+    const monthResult = monthsData[month];
+
+    if (!monthResult || !monthResult.success) {
+
+      details.innerHTML =
+        '<p class="empty">' +
+        "এই মাসের হিসাব এই ডিভাইসে পাওয়া যায়নি। " +
+        "আবার অনলাইনে গিয়ে Sync করুন।" +
+        "</p>";
+
+      return;
+    }
+
+    // মাসের নাম
+
+    const monthCard = document.createElement("div");
+
+    monthCard.className = "summary-card";
+
+    monthCard.innerHTML =
+      "<small>নির্বাচিত মাস</small><strong>" +
+      escapeHtml(monthResult.month || month) +
+      "</strong>";
+
+    summary.appendChild(monthCard);
+
+    // মাসের মোট বণ্টন
+
+    const totalCard = document.createElement("div");
+
+    totalCard.className = "summary-card";
+
+    totalCard.innerHTML =
+      "<small>মাসের মোট বণ্টন</small><strong>" +
+      escapeHtml(monthResult.total || "—") +
+      " টাকা</strong>";
+
+    summary.appendChild(totalCard);
+
+    // মাসের আয়
+
+    const incomeCard = document.createElement("div");
+
+    incomeCard.className = "summary-card";
+
+    incomeCard.innerHTML =
+      "<small>এই মাসের আয়</small><strong>" +
+      escapeHtml(monthResult.income || "—") +
+      "</strong>";
+
+    summary.appendChild(incomeCard);
+
+    // শুধুমাত্র দেখার নোট
+
+    const note = document.createElement("p");
+
+    note.className = "edit-note";
+
+    note.textContent =
+      "এটি অফলাইন সংরক্ষিত হিসাব। এখানে কোনো তথ্য পরিবর্তন বা সংরক্ষণ করা যাবে না।";
+
+    details.appendChild(note);
+
+    // খাতভিত্তিক টেবিল
+
+    const rows = Array.isArray(monthResult.rows)
+      ? monthResult.rows
+      : [];
+
+    if (!rows.length) {
+
+      const empty = document.createElement("p");
+
+      empty.className = "empty";
+      empty.textContent = "এই মাসের বিস্তারিত তথ্য পাওয়া যায়নি।";
+
+      details.appendChild(empty);
+
+      return;
+    }
+
+    let html =
+      '<div class="table-wrap"><table>' +
+      "<thead><tr>" +
+      "<th>খাতের নাম</th>" +
+      "<th>বণ্টিত টাকা</th>" +
+      "<th>বার্ষিক মোট</th>" +
+      "</tr></thead><tbody>";
+
+    rows.forEach(row => {
+
+      if (!row || !row.some(value =>
+        String(value ?? "").trim() !== ""
+      )) {
+        return;
+      }
+
+      const isTotal = String(row[0] || "").includes("মোট");
+
+      html += isTotal
+        ? '<tr class="total-row">'
+        : "<tr>";
+
+      html +=
+        "<td>" + escapeHtml(row[0] || "—") + "</td>" +
+        "<td>" + escapeHtml(row[1] || "—") + "</td>" +
+        "<td>" + escapeHtml(row[2] || "—") + "</td>";
+
+      html += "</tr>";
+
+    });
+
+    html += "</tbody></table></div>";
+
+    details.insertAdjacentHTML("beforeend", html);
+
+  }
+
+  // ==========================================
+  // অফলাইন PIN দিয়ে হিসাব খোলা
+  // ==========================================
+
   async function unlockOffline() {
 
     const pin = PIN_INPUT.value.trim();
 
     if (!pin) {
 
-      UNLOCK_MESSAGE.textContent =
-        "আপনার PIN লিখুন।";
+      UNLOCK_MESSAGE.textContent = "আপনার PIN লিখুন।";
 
       return;
     }
 
-    UNLOCK_MESSAGE.textContent =
-      "হিসাব খোলা হচ্ছে...";
+    UNLOCK_MESSAGE.textContent = "হিসাব খোলা হচ্ছে...";
 
-    document.getElementById("unlockButton").disabled = true;
+    const button = document.getElementById("unlockButton");
+
+    button.disabled = true;
 
     try {
 
@@ -686,18 +1038,34 @@
         throw new Error(
           "এই ডিভাইসে আগে কোনো হিসাব Sync করা হয়নি।"
         );
-
       }
 
-      const data = await decryptSnapshot(record, pin);
+      const decryptedData = await decryptSnapshot(record, pin);
 
-      showOfflineSnapshot(data, record);
+      offlineData = decryptedData;
+
+      renderOfflineDashboard(decryptedData);
+
+      document.getElementById("savedInfo").textContent =
+        "সর্বশেষ সংরক্ষণের সময়: " +
+        new Date(record.savedAt).toLocaleString("bn-BD");
+
+      document.getElementById("offlineRole").textContent =
+        "ব্যবহারকারীর ধরন: " +
+        (decryptedData.role === "owner" ? "Owner" : "Family") +
+        " | শুধু দেখার অনুমতি";
 
       PIN_INPUT.value = "";
 
       UNLOCK_MESSAGE.textContent = "";
 
+      UNLOCK_BOX.classList.add("hidden");
+
+      OFFLINE_DATA.classList.remove("hidden");
+
     } catch (error) {
+
+      console.error("Offline unlock error:", error);
 
       UNLOCK_MESSAGE.textContent =
         error.name === "OperationError"
@@ -706,15 +1074,21 @@
 
     } finally {
 
-      document.getElementById("unlockButton").disabled = false;
+      button.disabled = false;
 
     }
+
   }
 
-  // Offline হিসাব বন্ধ
+  // ==========================================
+  // অফলাইন হিসাব বন্ধ
+  // ==========================================
+
   function lockOffline() {
 
     DATA_DISPLAY.replaceChildren();
+
+    offlineData = null;
 
     OFFLINE_DATA.classList.add("hidden");
 
@@ -723,15 +1097,18 @@
     PIN_INPUT.value = "";
 
     UNLOCK_MESSAGE.textContent = "";
+
   }
 
-  // Internet সংযোগ পরীক্ষা
+  // ==========================================
+  // অনলাইন / অফলাইন অবস্থা
+  // ==========================================
+
   async function updateConnectionView() {
 
     if (navigator.onLine) {
 
-      STATUS.textContent =
-        "অনলাইন • ইন্টারনেট সংযুক্ত";
+      STATUS.textContent = "অনলাইন • ইন্টারনেট সংযুক্ত";
 
       ONLINE_PANEL.classList.remove("hidden");
 
@@ -762,10 +1139,15 @@
           "সংরক্ষিত হিসাব পরীক্ষা করা যায়নি।";
 
       }
+
     }
+
   }
 
-  // Button Events
+  // ==========================================
+  // বাটন ও ইভেন্ট
+  // ==========================================
+
   document.getElementById("unlockButton")
     .addEventListener("click", unlockOffline);
 
@@ -780,26 +1162,21 @@
   document.getElementById("lockButton")
     .addEventListener("click", lockOffline);
 
-  window.addEventListener(
-    "online",
-    updateConnectionView
-  );
+  window.addEventListener("online", updateConnectionView);
 
-  window.addEventListener(
-    "offline",
-    updateConnectionView
-  );
+  window.addEventListener("offline", updateConnectionView);
 
+  // ==========================================
   // অ্যাপ চালু
+  // ==========================================
+
   async function startApp() {
 
     try {
 
       if (!window.isSecureContext || !crypto.subtle) {
 
-        throw new Error(
-          "নিরাপদ সংযোগ পাওয়া যায়নি।"
-        );
+        throw new Error("নিরাপদ সংযোগ পাওয়া যায়নি।");
 
       }
 
@@ -809,15 +1186,18 @@
 
     } catch (error) {
 
-      STATUS.textContent =
-        "অ্যাপ প্রস্তুত করা যায়নি";
+      STATUS.textContent = "অ্যাপ প্রস্তুত করা যায়নি";
 
       SYNC_INFO.textContent = error.message;
 
+      console.error(error);
+
     }
+
   }
 
-  // Service Worker চালু
+  // Service Worker
+
   if ("serviceWorker" in navigator) {
 
     navigator.serviceWorker.register("service-worker.js")
