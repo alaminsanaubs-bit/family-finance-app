@@ -347,7 +347,7 @@
     </p>
 
     <p class="muted">
-      নিরাপত্তার জন্য PIN সরাসরি সংরক্ষণ করা হয় না।
+      নিরাপত্তার জন্য PIN সরাসরি সংরক্ষণ করা হয়।
       অফলাইন তথ্য PIN-ভিত্তিক এনক্রিপশনে এই ডিভাইসে রাখা হয়।
     </p>
 
@@ -373,7 +373,6 @@
     "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"
   ];
 
-  const APP_FRAME = document.getElementById("appFrame");
   const STATUS = document.getElementById("status");
   const ONLINE_PANEL = document.getElementById("onlinePanel");
   const OFFLINE_PANEL = document.getElementById("offlinePanel");
@@ -495,6 +494,10 @@
     );
   }
 
+  // ==========================================
+  // সংশোধিত Encryption Snapshot
+  // ==========================================
+
   async function encryptSnapshot(payload) {
 
     const pin = String(payload.pin || "");
@@ -508,9 +511,34 @@
 
     const key = await deriveKey(pin, salt);
 
+    /*
+      গুরুত্বপূর্ণ সংশোধন:
+
+      Apps Script থেকে dashboard Array হিসেবে আসে।
+      Offline dashboard কিন্তু success ও data থাকা Object
+      আশা করে।
+
+      তাই Array-কে সঠিক Object-এ রূপান্তর করা হচ্ছে।
+    */
+
+    const dashboardData = Array.isArray(payload.dashboard)
+      ? {
+          success: true,
+          data: payload.dashboard,
+          updatedAt: payload.updatedAt || new Date().toISOString()
+        }
+      : payload.dashboard;
+
+    if (
+      !dashboardData ||
+      !Array.isArray(dashboardData.data)
+    ) {
+      throw new Error("ড্যাশবোর্ডের তথ্য সঠিক নয়।");
+    }
+
     const cleanPayload = {
       role: payload.role,
-      dashboard: payload.dashboard,
+      dashboard: dashboardData,
       months: payload.months,
       updatedAt: payload.updatedAt,
       selectedMonth: payload.selectedMonth,
@@ -628,7 +656,8 @@
       console.error("Offline sync error:", error);
 
       SYNC_INFO.textContent =
-        "Sync সম্পন্ন হয়নি। অনুগ্রহ করে আবার লগইন করে চেষ্টা করুন।";
+        "Sync সম্পন্ন হয়নি। " +
+        (error.message || "আবার লগইন করে চেষ্টা করুন।");
 
     }
 
@@ -759,8 +788,6 @@
       return;
     }
 
-    // ড্যাশবোর্ডের সর্বশেষ লোডের তথ্য
-
     const statusBox = document.createElement("div");
 
     statusBox.className = "status";
@@ -774,8 +801,6 @@
 
     DATA_DISPLAY.appendChild(statusBox);
 
-    // প্রথম টেবিল
-
     DATA_DISPLAY.insertAdjacentHTML(
       "beforeend",
       makeSection(
@@ -784,8 +809,6 @@
       )
     );
 
-    // দ্বিতীয় টেবিল
-
     DATA_DISPLAY.insertAdjacentHTML(
       "beforeend",
       makeSection(
@@ -793,8 +816,6 @@
         makeTable(sheetData, 8, 15, 5, 10)
       )
     );
-
-    // মাস নির্বাচন ও বিস্তারিত অংশ
 
     const monthSection = document.createElement("div");
 
@@ -846,8 +867,6 @@
 
     DATA_DISPLAY.appendChild(monthSection);
 
-    // ডিফল্ট মাস নির্ধারণ
-
     const defaultMonth =
       data.selectedMonth ||
       (sheetData[25] && sheetData[25][1]) ||
@@ -856,8 +875,6 @@
     selector.value = MONTHS.includes(String(defaultMonth).trim())
       ? String(defaultMonth).trim()
       : "জানুয়ারি";
-
-    // মাস পরিবর্তন করলে শুধু সংরক্ষিত তথ্য দেখাবে
 
     selector.addEventListener("change", () => {
 
@@ -903,8 +920,6 @@
       return;
     }
 
-    // মাসের নাম
-
     const monthCard = document.createElement("div");
 
     monthCard.className = "summary-card";
@@ -915,8 +930,6 @@
       "</strong>";
 
     summary.appendChild(monthCard);
-
-    // মাসের মোট বণ্টন
 
     const totalCard = document.createElement("div");
 
@@ -929,8 +942,6 @@
 
     summary.appendChild(totalCard);
 
-    // মাসের আয়
-
     const incomeCard = document.createElement("div");
 
     incomeCard.className = "summary-card";
@@ -942,8 +953,6 @@
 
     summary.appendChild(incomeCard);
 
-    // শুধুমাত্র দেখার নোট
-
     const note = document.createElement("p");
 
     note.className = "edit-note";
@@ -952,8 +961,6 @@
       "এটি অফলাইন সংরক্ষিত হিসাব। এখানে কোনো তথ্য পরিবর্তন বা সংরক্ষণ করা যাবে না।";
 
     details.appendChild(note);
-
-    // খাতভিত্তিক টেবিল
 
     const rows = Array.isArray(monthResult.rows)
       ? monthResult.rows
