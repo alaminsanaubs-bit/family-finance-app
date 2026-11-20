@@ -7,23 +7,40 @@
   <meta name="theme-color" content="#123c32">
   <title>পারিবারিক ফাইন্যান্স</title>
   <link rel="manifest" href="manifest.json">
+
   <style>
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: Arial, "Noto Sans Bengali", sans-serif;
       background: #f3f6f5;
       color: #172b25;
     }
+
     header {
       background: #123c32;
       color: white;
       padding: 15px;
       text-align: center;
     }
-    header h2 { margin: 0 0 7px; font-size: 20px; }
-    #status { font-size: 13px; opacity: .9; }
-    main { max-width: 950px; margin: auto; padding: 14px; }
+
+    header h2 {
+      margin: 0 0 7px;
+      font-size: 20px;
+    }
+
+    #status {
+      font-size: 13px;
+      opacity: .9;
+    }
+
+    main {
+      max-width: 950px;
+      margin: auto;
+      padding: 14px;
+    }
+
     .panel {
       background: white;
       border-radius: 12px;
@@ -31,7 +48,11 @@
       margin-bottom: 14px;
       box-shadow: 0 2px 9px #0000000c;
     }
-    .hidden { display: none !important; }
+
+    .hidden {
+      display: none !important;
+    }
+
     input, button {
       width: 100%;
       padding: 13px;
@@ -39,7 +60,11 @@
       font-size: 16px;
       margin-top: 9px;
     }
-    input { border: 1px solid #bbb; }
+
+    input {
+      border: 1px solid #bbb;
+    }
+
     button {
       border: 0;
       background: #176b50;
@@ -47,11 +72,28 @@
       font-weight: bold;
       cursor: pointer;
     }
-    button.secondary { background: #53645e; }
-    button:disabled { opacity: .5; }
-    .notice { font-size: 14px; line-height: 1.7; }
-    .warning { color: #9a4d00; }
-    .success { color: #176b50; }
+
+    button.secondary {
+      background: #53645e;
+    }
+
+    button:disabled {
+      opacity: .5;
+    }
+
+    .notice {
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .warning {
+      color: #9a4d00;
+    }
+
+    .success {
+      color: #176b50;
+    }
+
     .data-card {
       border: 1px solid #e0e7e3;
       border-radius: 9px;
@@ -60,8 +102,17 @@
       background: #fff;
       overflow-wrap: anywhere;
     }
-    .data-title { font-weight: bold; margin-bottom: 8px; }
-    .data-value { white-space: pre-wrap; overflow-wrap: anywhere; }
+
+    .data-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .data-value {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
     details {
       border: 1px solid #e0e7e3;
       border-radius: 8px;
@@ -69,8 +120,17 @@
       margin: 8px 0;
       background: #fbfdfc;
     }
-    summary { cursor: pointer; font-weight: bold; }
-    .muted { color: #68756f; font-size: 13px; }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .muted {
+      color: #68756f;
+      font-size: 13px;
+    }
+
     iframe {
       width: 100%;
       height: 82vh;
@@ -79,21 +139,31 @@
       background: white;
       border-radius: 10px;
     }
-    #offlineData { padding-bottom: 30px; }
+
+    #offlineData {
+      padding-bottom: 30px;
+    }
   </style>
 </head>
+
 <body>
+
   <header>
     <h2>পারিবারিক ফাইন্যান্স ড্যাশবোর্ড</h2>
     <div id="status">সংযোগ পরীক্ষা করা হচ্ছে...</div>
   </header>
 
   <main>
+
     <section id="onlinePanel" class="panel">
       <div class="notice">
         <strong>অনলাইন অ্যাপ</strong>
-        <p>ইন্টারনেট থাকলে আগের PIN দিয়ে লগইন করে হিসাব দেখুন ও প্রয়োজনীয় কাজ করুন।</p>
+        <p>
+          ইন্টারনেট থাকলে আগের PIN দিয়ে লগইন করে হিসাব দেখুন
+          ও প্রয়োজনীয় কাজ করুন।
+        </p>
       </div>
+
       <iframe
         id="appFrame"
         title="পারিবারিক ফাইন্যান্স অ্যাপ"
@@ -103,35 +173,66 @@
     </section>
 
     <section id="offlinePanel" class="panel hidden">
+
       <h3>অফলাইন হিসাব</h3>
+
       <p class="notice warning">
-        আপনি এখন অফলাইনে আছেন। এখানে শুধু আগে এই ডিভাইসে Sync হওয়া হিসাব দেখা যাবে।
+        আপনি এখন অফলাইনে আছেন। এখানে শুধু আগে এই ডিভাইসে
+        Sync হওয়া হিসাব দেখা যাবে।
         অফলাইনে কোনো হিসাব পরিবর্তন বা সংরক্ষণ করা যাবে না।
       </p>
 
       <div id="unlockBox">
-        <label for="offlinePin">অফলাইন হিসাব খোলার PIN দিন</label>
-        <input id="offlinePin" type="password" inputmode="numeric"
-          autocomplete="off" placeholder="আপনার PIN লিখুন">
-        <button id="unlockButton" type="button">হিসাব খুলুন</button>
+
+        <label for="offlinePin">
+          অফলাইন হিসাব খোলার PIN দিন
+        </label>
+
+        <input
+          id="offlinePin"
+          type="password"
+          inputmode="numeric"
+          autocomplete="off"
+          placeholder="আপনার PIN লিখুন">
+
+        <button id="unlockButton" type="button">
+          হিসাব খুলুন
+        </button>
+
         <p id="unlockMessage" class="notice warning"></p>
       </div>
 
       <div id="offlineData" class="hidden">
+
         <p id="savedInfo" class="muted"></p>
-        <button class="secondary" id="lockButton" type="button">হিসাব বন্ধ করুন</button>
+
+        <button
+          class="secondary"
+          id="lockButton"
+          type="button">
+          হিসাব বন্ধ করুন
+        </button>
+
         <div id="dataDisplay"></div>
       </div>
+
     </section>
 
     <section class="panel notice">
+
       <strong>Sync অবস্থা</strong>
-      <p id="syncInfo">এই ডিভাইসে এখনো নতুন Sync পাওয়া যায়নি।</p>
-      <p class="muted">
-        নিরাপত্তার জন্য PIN সরাসরি সংরক্ষণ করা হয় না। অফলাইন তথ্য PIN-ভিত্তিক
-        এনক্রিপশনে এই ডিভাইসে রাখা হয়।
+
+      <p id="syncInfo">
+        এই ডিভাইসে এখনো নতুন Sync পাওয়া যায়নি।
       </p>
+
+      <p class="muted">
+        নিরাপত্তার জন্য PIN সরাসরি সংরক্ষণ করা হয় না।
+        অফলাইন তথ্য PIN-ভিত্তিক এনক্রিপশনে এই ডিভাইসে রাখা হয়।
+      </p>
+
     </section>
+
   </main>
 
 <script>
@@ -155,14 +256,21 @@
 
   let db = null;
 
+  // IndexedDB চালু করা
   function openDatabase() {
     return new Promise((resolve, reject) => {
+
       const request = indexedDB.open(DB_NAME, DB_VERSION);
 
       request.onupgradeneeded = () => {
+
         const database = request.result;
+
         if (!database.objectStoreNames.contains(STORE_NAME)) {
-          database.createObjectStore(STORE_NAME, { keyPath: "id" });
+          database.createObjectStore(
+            STORE_NAME,
+            { keyPath: "id" }
+          );
         }
       };
 
@@ -172,43 +280,73 @@
       };
 
       request.onerror = () => reject(request.error);
+
     });
   }
 
+  // এনক্রিপ্ট করা তথ্য সংরক্ষণ
   function saveSnapshot(record) {
     return new Promise((resolve, reject) => {
+
       const tx = db.transaction(STORE_NAME, "readwrite");
+
       tx.objectStore(STORE_NAME).put(record);
+
       tx.oncomplete = () => resolve();
       tx.onerror = () => reject(tx.error);
       tx.onabort = () => reject(tx.error);
+
     });
   }
 
+  // সংরক্ষিত তথ্য পড়া
   function readSnapshot() {
     return new Promise((resolve, reject) => {
+
       const tx = db.transaction(STORE_NAME, "readonly");
+
       const request = tx.objectStore(STORE_NAME).get("latest");
+
       request.onsuccess = () => resolve(request.result || null);
       request.onerror = () => reject(request.error);
+
     });
   }
 
+  // Base64 তৈরি
   function bytesToBase64(bytes) {
+
     let binary = "";
-    bytes.forEach(byte => binary += String.fromCharCode(byte));
+
+    bytes.forEach(byte => {
+      binary += String.fromCharCode(byte);
+    });
+
     return btoa(binary);
   }
 
+  // Base64 থেকে Bytes
   function base64ToBytes(value) {
+
     const binary = atob(value);
-    return Uint8Array.from(binary, char => char.charCodeAt(0));
+
+    return Uint8Array.from(
+      binary,
+      char => char.charCodeAt(0)
+    );
   }
 
+  // PIN থেকে Encryption Key তৈরি
   async function deriveKey(pin, salt) {
+
     const encoder = new TextEncoder();
+
     const keyMaterial = await crypto.subtle.importKey(
-      "raw", encoder.encode(pin), "PBKDF2", false, ["deriveKey"]
+      "raw",
+      encoder.encode(pin),
+      "PBKDF2",
+      false,
+      ["deriveKey"]
     );
 
     return crypto.subtle.deriveKey(
@@ -219,18 +357,32 @@
         hash: "SHA-256"
       },
       keyMaterial,
-      { name: "AES-GCM", length: 256 },
+      {
+        name: "AES-GCM",
+        length: 256
+      },
       false,
       ["encrypt", "decrypt"]
     );
   }
 
+  // Snapshot এনক্রিপ্ট করা
   async function encryptSnapshot(payload) {
-    const pin = String(payload.pin || "");
-    if (!pin) throw new Error("Sync বার্তায় PIN পাওয়া যায়নি।");
 
-    const salt = crypto.getRandomValues(new Uint8Array(16));
-    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const pin = String(payload.pin || "");
+
+    if (!pin) {
+      throw new Error("Sync বার্তায় PIN পাওয়া যায়নি।");
+    }
+
+    const salt = crypto.getRandomValues(
+      new Uint8Array(16)
+    );
+
+    const iv = crypto.getRandomValues(
+      new Uint8Array(12)
+    );
+
     const key = await deriveKey(pin, salt);
 
     const cleanPayload = {
@@ -242,9 +394,15 @@
       savedAt: payload.savedAt || new Date().toISOString()
     };
 
-    const encoded = new TextEncoder().encode(JSON.stringify(cleanPayload));
+    const encoded = new TextEncoder().encode(
+      JSON.stringify(cleanPayload)
+    );
+
     const encrypted = await crypto.subtle.encrypt(
-      { name: "AES-GCM", iv: iv },
+      {
+        name: "AES-GCM",
+        iv: iv
+      },
       key,
       encoded
     );
@@ -253,109 +411,201 @@
       id: "latest",
       salt: bytesToBase64(salt),
       iv: bytesToBase64(iv),
-      ciphertext: bytesToBase64(new Uint8Array(encrypted)),
+      ciphertext: bytesToBase64(
+        new Uint8Array(encrypted)
+      ),
       savedAt: cleanPayload.savedAt
     };
   }
 
+  // Snapshot Decrypt করা
   async function decryptSnapshot(record, pin) {
+
     const salt = base64ToBytes(record.salt);
     const iv = base64ToBytes(record.iv);
     const ciphertext = base64ToBytes(record.ciphertext);
+
     const key = await deriveKey(pin, salt);
 
     const decrypted = await crypto.subtle.decrypt(
-      { name: "AES-GCM", iv: iv },
+      {
+        name: "AES-GCM",
+        iv: iv
+      },
       key,
       ciphertext
     );
 
-    return JSON.parse(new TextDecoder().decode(decrypted));
+    return JSON.parse(
+      new TextDecoder().decode(decrypted)
+    );
   }
 
+  // Google Apps Script Origin যাচাই
   function isAllowedAppsScriptOrigin(origin) {
+
     try {
+
       const url = new URL(origin);
-      const host = url.hostname;
+      const host = url.hostname.toLowerCase();
+
+      const isGoogleAppsScriptHost =
+        host === "script.google.com" ||
+        host === "script.googleusercontent.com" ||
+        host.endsWith("-script.googleusercontent.com");
+
       return url.protocol === "https:" &&
-        (host === "script.google.com" ||
-         host === "script.googleusercontent.com" ||
-         host.endsWith(".script.googleusercontent.com"));
+        url.username === "" &&
+        url.password === "" &&
+        url.port === "" &&
+        isGoogleAppsScriptHost;
+
     } catch (_) {
+
       return false;
+
     }
   }
 
+  // Apps Script থেকে Offline Sync বার্তা গ্রহণ
   window.addEventListener("message", async event => {
-    if (!isAllowedAppsScriptOrigin(event.origin)) return;
+
+    if (!isAllowedAppsScriptOrigin(event.origin)) {
+      return;
+    }
 
     const message = event.data;
-    if (!message || message.type !== "offline-sync") return;
+
+    if (!message || message.type !== "offline-sync") {
+      return;
+    }
 
     try {
-      if (!message.payload || !message.payload.pin ||
-          !message.payload.dashboard || !message.payload.months) {
+
+      if (
+        !message.payload ||
+        !message.payload.pin ||
+        !message.payload.dashboard ||
+        !message.payload.months
+      ) {
         throw new Error("Sync তথ্য অসম্পূর্ণ।");
       }
 
-      const encryptedRecord = await encryptSnapshot(message.payload);
+      const encryptedRecord = await encryptSnapshot(
+        message.payload
+      );
+
       await saveSnapshot(encryptedRecord);
 
       SYNC_INFO.textContent =
         "সর্বশেষ হিসাব এই ডিভাইসে এনক্রিপ্ট করে সংরক্ষণ হয়েছে: " +
         new Date(encryptedRecord.savedAt).toLocaleString("bn-BD");
 
-      STATUS.textContent = "অনলাইন • সর্বশেষ হিসাব Sync হয়েছে";
+      STATUS.textContent =
+        "অনলাইন • সর্বশেষ হিসাব Sync হয়েছে";
+
     } catch (error) {
+
       console.error("Offline sync error:", error);
+
       SYNC_INFO.textContent =
         "Sync সম্পন্ন হয়নি। অনুগ্রহ করে আবার লগইন করে চেষ্টা করুন।";
+
     }
+
   });
 
+  // Text Element তৈরি
   function addTextElement(parent, text, className) {
+
     const element = document.createElement("div");
-    if (className) element.className = className;
+
+    if (className) {
+      element.className = className;
+    }
+
     element.textContent = text;
+
     parent.appendChild(element);
   }
 
+  // সংরক্ষিত হিসাব প্রদর্শন
   function renderValue(parent, key, value, depth = 0) {
-    if (depth > 8) return;
+
+    if (depth > 8) {
+      return;
+    }
 
     if (value === null || value === undefined) {
-      addTextElement(parent, key + ": —", "data-card");
+
+      addTextElement(
+        parent,
+        key + ": —",
+        "data-card"
+      );
+
       return;
     }
 
     if (typeof value === "object") {
+
       const details = document.createElement("details");
+
       const summary = document.createElement("summary");
+
       summary.textContent = key;
+
       details.appendChild(summary);
 
       if (Array.isArray(value)) {
-        value.forEach((item, index) =>
-          renderValue(details, "ক্রম " + (index + 1), item, depth + 1)
-        );
+
+        value.forEach((item, index) => {
+
+          renderValue(
+            details,
+            "ক্রম " + (index + 1),
+            item,
+            depth + 1
+          );
+
+        });
+
       } else {
-        Object.entries(value).forEach(([childKey, childValue]) =>
-          renderValue(details, childKey, childValue, depth + 1)
+
+        Object.entries(value).forEach(
+          ([childKey, childValue]) => {
+
+            renderValue(
+              details,
+              childKey,
+              childValue,
+              depth + 1
+            );
+
+          }
         );
+
       }
 
       parent.appendChild(details);
+
       return;
     }
 
     const card = document.createElement("div");
+
     card.className = "data-card";
+
     addTextElement(card, key, "data-title");
+
     addTextElement(card, String(value), "data-value");
+
     parent.appendChild(card);
   }
 
+  // Offline Snapshot প্রদর্শন
   function showOfflineSnapshot(data, record) {
+
     DATA_DISPLAY.replaceChildren();
 
     addTextElement(
@@ -363,122 +613,224 @@
       "সংরক্ষিত ড্যাশবোর্ড",
       "data-title"
     );
-    renderValue(DATA_DISPLAY, "ড্যাশবোর্ডের তথ্য", data.dashboard);
+
+    renderValue(
+      DATA_DISPLAY,
+      "ড্যাশবোর্ডের তথ্য",
+      data.dashboard
+    );
 
     const months = data.months || {};
-    addTextElement(DATA_DISPLAY, "মাসভিত্তিক হিসাব", "data-title");
 
-    Object.entries(months).forEach(([month, monthData]) => {
-      const details = document.createElement("details");
-      const summary = document.createElement("summary");
-      summary.textContent = month;
-      details.appendChild(summary);
-      renderValue(details, "এই মাসের হিসাব", monthData);
-      DATA_DISPLAY.appendChild(details);
-    });
+    addTextElement(
+      DATA_DISPLAY,
+      "মাসভিত্তিক হিসাব",
+      "data-title"
+    );
+
+    Object.entries(months).forEach(
+      ([month, monthData]) => {
+
+        const details = document.createElement("details");
+
+        const summary = document.createElement("summary");
+
+        summary.textContent = month;
+
+        details.appendChild(summary);
+
+        renderValue(
+          details,
+          "এই মাসের হিসাব",
+          monthData
+        );
+
+        DATA_DISPLAY.appendChild(details);
+
+      }
+    );
 
     document.getElementById("savedInfo").textContent =
       "সর্বশেষ সংরক্ষণের সময়: " +
       new Date(record.savedAt).toLocaleString("bn-BD");
 
     UNLOCK_BOX.classList.add("hidden");
+
     OFFLINE_DATA.classList.remove("hidden");
   }
 
+  // Offline হিসাব খোলা
   async function unlockOffline() {
+
     const pin = PIN_INPUT.value.trim();
+
     if (!pin) {
-      UNLOCK_MESSAGE.textContent = "আপনার PIN লিখুন।";
+
+      UNLOCK_MESSAGE.textContent =
+        "আপনার PIN লিখুন।";
+
       return;
     }
 
-    UNLOCK_MESSAGE.textContent = "হিসাব খোলা হচ্ছে...";
+    UNLOCK_MESSAGE.textContent =
+      "হিসাব খোলা হচ্ছে...";
+
     document.getElementById("unlockButton").disabled = true;
 
     try {
+
       const record = await readSnapshot();
 
       if (!record) {
-        throw new Error("এই ডিভাইসে আগে কোনো হিসাব Sync করা হয়নি।");
+
+        throw new Error(
+          "এই ডিভাইসে আগে কোনো হিসাব Sync করা হয়নি।"
+        );
+
       }
 
       const data = await decryptSnapshot(record, pin);
+
       showOfflineSnapshot(data, record);
+
       PIN_INPUT.value = "";
+
       UNLOCK_MESSAGE.textContent = "";
+
     } catch (error) {
+
       UNLOCK_MESSAGE.textContent =
         error.name === "OperationError"
           ? "PIN সঠিক নয় অথবা সংরক্ষিত তথ্য খোলা যাচ্ছে না।"
           : error.message || "হিসাব খোলা যায়নি।";
+
     } finally {
+
       document.getElementById("unlockButton").disabled = false;
+
     }
   }
 
+  // Offline হিসাব বন্ধ
   function lockOffline() {
+
     DATA_DISPLAY.replaceChildren();
+
     OFFLINE_DATA.classList.add("hidden");
+
     UNLOCK_BOX.classList.remove("hidden");
+
     PIN_INPUT.value = "";
+
     UNLOCK_MESSAGE.textContent = "";
   }
 
+  // Internet সংযোগ পরীক্ষা
   async function updateConnectionView() {
+
     if (navigator.onLine) {
-      STATUS.textContent = "অনলাইন • ইন্টারনেট সংযুক্ত";
+
+      STATUS.textContent =
+        "অনলাইন • ইন্টারনেট সংযুক্ত";
+
       ONLINE_PANEL.classList.remove("hidden");
+
       OFFLINE_PANEL.classList.add("hidden");
+
       lockOffline();
+
     } else {
-      STATUS.textContent = "অফলাইন • শুধু সংরক্ষিত হিসাব দেখা যাবে";
+
+      STATUS.textContent =
+        "অফলাইন • শুধু সংরক্ষিত হিসাব দেখা যাবে";
+
       ONLINE_PANEL.classList.add("hidden");
+
       OFFLINE_PANEL.classList.remove("hidden");
 
       try {
+
         const record = await readSnapshot();
+
         SYNC_INFO.textContent = record
           ? "এই ডিভাইসে সংরক্ষিত হিসাব পাওয়া গেছে। PIN দিয়ে খুলুন।"
           : "এই ডিভাইসে এখনো কোনো হিসাব Sync করা হয়নি।";
+
       } catch (_) {
-        SYNC_INFO.textContent = "সংরক্ষিত হিসাব পরীক্ষা করা যায়নি।";
+
+        SYNC_INFO.textContent =
+          "সংরক্ষিত হিসাব পরীক্ষা করা যায়নি।";
+
       }
     }
   }
 
+  // Button Events
   document.getElementById("unlockButton")
     .addEventListener("click", unlockOffline);
 
   PIN_INPUT.addEventListener("keydown", event => {
-    if (event.key === "Enter") unlockOffline();
+
+    if (event.key === "Enter") {
+      unlockOffline();
+    }
+
   });
 
   document.getElementById("lockButton")
     .addEventListener("click", lockOffline);
 
-  window.addEventListener("online", updateConnectionView);
-  window.addEventListener("offline", updateConnectionView);
+  window.addEventListener(
+    "online",
+    updateConnectionView
+  );
 
+  window.addEventListener(
+    "offline",
+    updateConnectionView
+  );
+
+  // অ্যাপ চালু
   async function startApp() {
+
     try {
+
       if (!window.isSecureContext || !crypto.subtle) {
-        throw new Error("নিরাপদ সংযোগ পাওয়া যায়নি।");
+
+        throw new Error(
+          "নিরাপদ সংযোগ পাওয়া যায়নি।"
+        );
+
       }
+
       await openDatabase();
+
       await updateConnectionView();
+
     } catch (error) {
-      STATUS.textContent = "অ্যাপ প্রস্তুত করা যায়নি";
+
+      STATUS.textContent =
+        "অ্যাপ প্রস্তুত করা যায়নি";
+
       SYNC_INFO.textContent = error.message;
+
     }
   }
 
+  // Service Worker চালু
   if ("serviceWorker" in navigator) {
+
     navigator.serviceWorker.register("service-worker.js")
-      .catch(error => console.error("Service Worker:", error));
+      .catch(error => {
+        console.error("Service Worker:", error);
+      });
+
   }
 
   startApp();
+
 })();
 </script>
+
 </body>
 </html>
