@@ -12,10 +12,7 @@
     *{box-sizing:border-box}
 
     body{
-      margin:0;
-      padding:12px;
-      background:#f1f5f9;
-      color:#1e293b;
+      margin:0;padding:12px;background:#f1f5f9;color:#1e293b;
       font-family:Arial,"Noto Sans Bengali",sans-serif
     }
 
@@ -23,179 +20,98 @@
 
     .header{
       background:linear-gradient(135deg,#075e48,#0d9488);
-      color:white;
-      padding:25px 20px;
-      border-radius:16px;
-      margin-bottom:16px
+      color:white;padding:25px 20px;border-radius:16px;margin-bottom:16px
     }
 
     .header h1{margin:0 0 8px;font-size:23px}
     .header p{margin:0;font-size:13px}
 
     .section,.status{
-      background:white;
-      padding:16px;
-      border-radius:14px;
-      margin-bottom:16px;
-      box-shadow:0 2px 8px #00000008
+      background:white;padding:16px;border-radius:14px;
+      margin-bottom:16px;box-shadow:0 2px 8px #00000008
     }
 
-    .section h2{
-      font-size:17px;
-      color:#075e48;
-      margin:0 0 14px
-    }
+    .section h2{font-size:17px;color:#075e48;margin:0 0 14px}
 
     input,button{font-size:15px;padding:12px;border-radius:8px}
 
-    input{
-      width:100%;
-      border:1px solid #cbd5e1;
-      margin:10px 0
-    }
+    input{width:100%;border:1px solid #cbd5e1;margin:10px 0}
 
-    button{
-      border:0;
-      background:#075e48;
-      color:white;
-      cursor:pointer
-    }
-
+    button{border:0;background:#075e48;color:white;cursor:pointer}
     button:disabled{opacity:.5}
-
     .login-btn{width:100%}
 
     .refresh{
-      background:white;
-      border:1px solid #0d9488;
-      color:#075e48;
-      margin-top:12px
+      background:white;border:1px solid #0d9488;color:#075e48;margin-top:12px
     }
 
     .logout{background:#64748b;margin-left:8px}
 
     .table-wrap{width:100%;overflow-x:auto}
 
-    table{
-      width:100%;
-      min-width:480px;
-      border-collapse:collapse;
-      font-size:13px
-    }
+    table{width:100%;min-width:480px;border-collapse:collapse;font-size:13px}
 
     th,td{
-      padding:11px 9px;
-      border-bottom:1px solid #e5e7eb;
-      text-align:left;
-      white-space:nowrap
+      padding:11px 9px;border-bottom:1px solid #e5e7eb;
+      text-align:left;white-space:nowrap
     }
 
     th{background:#eaf5f1;color:#075e48}
 
-    tr.total-row td{
-      font-weight:bold;
-      background:#eaf5f1;
-      color:#075e48
-    }
+    tr.total-row td{font-weight:bold;background:#eaf5f1;color:#075e48}
 
     .summary{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-      margin-bottom:14px
+      display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px
     }
 
     .summary-card{
-      background:#f0fdfa;
-      border:1px solid #ccfbf1;
-      padding:13px;
-      border-radius:10px
+      background:#f0fdfa;border:1px solid #ccfbf1;
+      padding:13px;border-radius:10px
     }
 
-    .summary-card small{
-      display:block;
-      color:#64748b;
-      margin-bottom:7px
-    }
-
-    .summary-card strong{
-      color:#075e48;
-      font-size:17px
-    }
+    .summary-card small{display:block;color:#64748b;margin-bottom:7px}
+    .summary-card strong{color:#075e48;font-size:17px}
 
     .empty{text-align:center;padding:20px;color:#64748b}
 
-    .footer{
-      text-align:center;
-      color:#64748b;
-      font-size:12px;
-      padding:12px
-    }
+    .footer{text-align:center;color:#64748b;font-size:12px;padding:12px}
 
     .message{font-size:14px;margin-top:12px;color:#b42318}
     .small{font-size:12px;color:#64748b}
 
     .month-select{
-      width:100%;
-      padding:13px;
-      border:1px solid #0d9488;
-      border-radius:9px;
-      background:white;
-      color:#075e48;
-      font-size:16px;
-      margin:8px 0 14px
+      width:100%;padding:13px;border:1px solid #0d9488;
+      border-radius:9px;background:white;color:#075e48;
+      font-size:16px;margin:8px 0 14px
     }
 
     .hidden{display:none!important}
 
-    .edit-note{
-      color:#64748b;
-      font-size:12px;
-      margin:8px 0
-    }
+    .edit-note{color:#64748b;font-size:12px;margin:8px 0}
 
     .income-readonly{
-      background:#f0fdfa;
-      border:1px solid #ccfbf1;
-      padding:12px;
-      border-radius:9px;
-      margin:12px 0;
-      color:#075e48
+      background:#f0fdfa;border:1px solid #ccfbf1;
+      padding:12px;border-radius:9px;margin:12px 0;color:#075e48
     }
 
     .status-box{
-      padding:12px;
-      border-radius:9px;
-      margin:10px 0;
-      font-size:14px;
-      line-height:1.6;
-      overflow-wrap:anywhere
+      padding:12px;border-radius:9px;margin:10px 0;
+      font-size:14px;line-height:1.6;overflow-wrap:anywhere
     }
 
     .success{background:#dcfce7;color:#166534}
     .warning{background:#fef3c7;color:#92400e}
     .error{background:#fee2e2;color:#991b1b}
 
-    .top-actions{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-top:12px
-    }
-
+    .top-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
     .top-actions button{flex:1;min-width:120px}
 
     .secondary{background:#64748b}
     .danger{background:#b91c1c}
 
     iframe{
-      display:block;
-      width:100%;
-      height:88vh;
-      min-height:650px;
-      border:0;
-      background:white;
-      border-radius:10px
+      display:block;width:100%;height:88vh;min-height:650px;
+      border:0;background:white;border-radius:10px
     }
 
     @media(max-width:600px){
@@ -336,7 +252,7 @@
 ========================================= */
 
 const APP_URL =
-"https://script.google.com/macros/s/AKfycbyPCmc42IN-3K5QAuQXfIPRFuW_RlP9nF2ygqyjj3yGlWFv8btoroCuB4E5TSuHz3aA/exec";
+"https://script.google.com/macros/s/AKfycbzDPb1OFGvZ7fpxQZxOIs00xdRDq6ctrsvDGMXrLMoDhljU7T10BV9hGRSBGpXxiA/exec";
 
 const PWA_ORIGIN = "https://alaminsanaubs-bit.github.io";
 const APP_ROOT = "/family-finance-app/";
@@ -372,14 +288,14 @@ const appFrame = document.getElementById("appFrame");
 function normalizeDigits(value) {
   const bangla = "০১২৩৪৫৬৭৮৯";
 
-  return String(value ?? "").replace(/[০-৯]/g, digit =>
+  return String(value ?? "").replace(/[০-৯]/g,digit =>
     String(bangla.indexOf(digit))
   ).trim();
 }
 
 
 function escapeHtml(value) {
-  return String(value ?? "").replace(/[&<>"']/g, char => ({
+  return String(value ?? "").replace(/[&<>"']/g,char => ({
     "&":"&amp;",
     "<":"&lt;",
     ">":"&gt;",
@@ -402,7 +318,7 @@ function hasContent(row) {
 }
 
 
-function makeSection(title, content) {
+function makeSection(title,content) {
   return '<div class="section"><h2>' +
     escapeHtml(title) +
     '</h2>' + content + '</div>';
@@ -410,10 +326,87 @@ function makeSection(title, content) {
 
 
 /* =========================================
-   ৪. ONLINE CONNECTION STATUS
+   ৪. ২০২৭ INCOME SUMMARY HELPERS
+========================================= */
+
+function formatIncomeNumber(value) {
+
+  return new Intl.NumberFormat("bn-BD",{
+    maximumFractionDigits:2
+  }).format(value);
+}
+
+
+function calculateAnnualIncome(months) {
+
+  let total = 0;
+  let count = 0;
+
+  MONTH_NAMES.forEach(month => {
+
+    const item = months ? months[month] : null;
+
+    if (!item || item.success !== true) return;
+
+    if (item.income === undefined || item.income === null) return;
+
+    const raw = String(item.income).trim();
+
+    if (raw === "") return;
+
+    const number = Number(englishNumber(raw));
+
+    if (!Number.isFinite(number) || number <= 0) return;
+
+    total += number;
+    count++;
+  });
+
+  return {
+    total:total,
+    count:count,
+    average:count > 0 ? total/count : 0
+  };
+}
+
+
+function renderAnnualIncomeSummary(months) {
+
+  const result = calculateAnnualIncome(months);
+
+  let html = '<div class="summary">';
+
+  html +=
+    '<div class="summary-card">' +
+    '<small>২০২৭ সালের মোট ইনকাম</small>' +
+    '<strong>' + formatIncomeNumber(result.total) + ' টাকা</strong>' +
+    '</div>';
+
+  html +=
+    '<div class="summary-card">' +
+    '<small>ইনকাম থাকা মাসের গড়</small>' +
+    '<strong>' + formatIncomeNumber(result.average) + ' টাকা</strong>' +
+    '</div>';
+
+  html += '</div>';
+
+  html +=
+    '<div class="small" style="margin:0 0 12px">' +
+    'ইনকাম লেখা মাস: ' +
+    formatIncomeNumber(result.count) +
+    ' / ১২ মাস' +
+    '</div>';
+
+  return html;
+}
+
+
+/* =========================================
+   ৫. ONLINE CONNECTION STATUS
 ========================================= */
 
 function showConnectionStatus(message,type) {
+
   const element = document.getElementById("connectionStatus");
 
   element.textContent = message;
@@ -453,7 +446,7 @@ window.addEventListener("offline",updateConnectionStatus);
 
 
 /* =========================================
-   ৫. INDEXED DB
+   ৬. INDEXED DB
 ========================================= */
 
 function openDatabase() {
@@ -549,7 +542,7 @@ function getRecord(id) {
 
 
 /* =========================================
-   ৬. ENCRYPTION
+   ৭. ENCRYPTION
 ========================================= */
 
 async function deriveEncryptionKey(pin,salt) {
@@ -687,7 +680,7 @@ async function decryptSnapshot(record,pin) {
 
 
 /* =========================================
-   ৭. SYNC MESSAGE
+   ৮. SYNC MESSAGE
 ========================================= */
 
 function isAllowedAppsScriptOrigin(origin) {
@@ -800,7 +793,7 @@ window.addEventListener("message",async event => {
 
 
 /* =========================================
-   ৮. SCREEN CONTROL
+   ৯. SCREEN CONTROL
 ========================================= */
 
 function showOfflineLogin() {
@@ -831,7 +824,7 @@ function showOnlineApp() {
 
 
 /* =========================================
-   ৯. OFFLINE LOGIN
+   ১০. OFFLINE LOGIN
 ========================================= */
 
 async function attemptOfflineLogin() {
@@ -916,7 +909,7 @@ async function attemptOfflineLogin() {
 
 
 /* =========================================
-   ১০. ONLINE DASHBOARD TABLE FORMAT
+   ১১. TABLE FORMAT
 ========================================= */
 
 function makeTable(data,startRow,endRow,startCol,endCol) {
@@ -967,8 +960,7 @@ function makeTable(data,startRow,endRow,startCol,endCol) {
 
 
 /* =========================================
-   ১১. OFFLINE DASHBOARD
-   অনলাইন Dashboard-এর একই ডিজাইন
+   ১২. OFFLINE DASHBOARD
 ========================================= */
 
 function showOfflineDashboard(data) {
@@ -1025,6 +1017,15 @@ function renderOfflineDashboard(snapshot) {
 
   let html = "";
 
+  /* নতুন ২০২৭ INCOME SUMMARY */
+
+  html += makeSection(
+    "২০২৭ সালের ইনকাম সারাংশ",
+    renderAnnualIncomeSummary(snapshot.months)
+  );
+
+  /* আগের Dashboard */
+
   html += makeSection(
     "মাসভিত্তিক আয় ও প্রকৃত মোট বণ্টন",
     makeTable(data,8,22,0,4)
@@ -1077,8 +1078,7 @@ function renderOfflineDashboard(snapshot) {
 
 
 /* =========================================
-   ১২. OFFLINE MONTH DETAILS
-   অনলাইন হিসাবের একই টেবিল
+   ১৩. OFFLINE MONTH DETAILS
 ========================================= */
 
 function renderOfflineMonth(month) {
@@ -1179,7 +1179,7 @@ function renderOfflineMonth(month) {
 
 
 /* =========================================
-   ১৩. BUTTONS
+   ১৪. BUTTONS
 ========================================= */
 
 document.getElementById("showOfflineButton")
@@ -1212,7 +1212,7 @@ document.getElementById("offlinePin")
 
 
 /* =========================================
-   ১৪. SERVICE WORKER
+   ১৫. SERVICE WORKER
 ========================================= */
 
 if ("serviceWorker" in navigator) {
@@ -1242,7 +1242,7 @@ if ("serviceWorker" in navigator) {
 
 
 /* =========================================
-   ১৫. START APP
+   ১৬. START APP
 ========================================= */
 
 updateConnectionStatus();
